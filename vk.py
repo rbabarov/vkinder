@@ -12,9 +12,14 @@ def write_json(data_to_write):
 
 class User:
 
-    def __init__(self, login, password):
+    def __init__(self, login=None, password=None, token=None):
 
-        self.vk_session = vk_api.VkApi(login, password)
+        if token != None:
+        # self.vk_session = vk_api.VkApi(login, password)
+             self.vk_session = vk_api.VkApi(token=token)
+        else:
+            self.vk_session = vk_api.VkApi(login, password)
+
         self.vk_session.auth()
         self.vk = self.vk_session.get_api()
 
